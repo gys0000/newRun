@@ -1,10 +1,11 @@
 package com.gystry.common;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
 
-import com.gystry.common.net.RetrofitDeploy;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.runner.AndroidJUnit4;
+import com.gystry.common.net.*;
+import com.gystry.common.net.listener.BaseObserrverListener;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -26,7 +27,29 @@ public class ExampleInstrumentedTest {
     }
 
     @Test
-    public void getMessageTest(){
-        RetrofitDeploy.doRequestByRetrofit();
+    public void getMessageTest() {
+        TokenManager.getInstance().setToken("Bearer 20b4f5b55c3fc30f98120b6bdbda546d");
+        RetrofitDeploy.getRetrofitManager().doRequest(RetrofitDeploy.getRetrofitManager().getRequestService().getLiveList(), new BaseObserrverListener() {
+            @Override
+            public void onSuccess(Object result) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+
+            }
+
+            @Override
+            public void onBusinessError(ErrorBean errorBean) {
+
+            }
+        });
+
     }
 }
