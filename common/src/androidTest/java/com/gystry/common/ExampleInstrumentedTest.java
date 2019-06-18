@@ -4,8 +4,9 @@ import android.content.Context;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
+import com.blankj.utilcode.util.LogUtils;
 import com.gystry.common.net.*;
-import com.gystry.common.net.listener.BaseObserrverListener;
+import io.reactivex.observers.DisposableObserver;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -29,27 +30,22 @@ public class ExampleInstrumentedTest {
     @Test
     public void getMessageTest() {
         TokenManager.getInstance().setToken("Bearer 20b4f5b55c3fc30f98120b6bdbda546d");
-        RetrofitDeploy.getRetrofitManager().doRequest(RetrofitDeploy.getRetrofitManager().getRequestService().getLiveList(), new BaseObserrverListener() {
-            @Override
-            public void onSuccess(Object result) {
+        RetrofitDeploy.getRetrofitManager().getRequestService().getLiveList().compose(RxSchedulers.<BaseCommonBean>io_main())
+                .subscribeWith(new DisposableObserver<Object>() {
+                    @Override
+                    public void onNext(Object o) {
+                        LogUtils.e("onNext");
+                    }
 
-            }
+                    @Override
+                    public void onError(Throwable e) {
+                        LogUtils.e("onError");
+                    }
 
-            @Override
-            public void onComplete() {
-
-            }
-
-            @Override
-            public void onError(Throwable throwable) {
-
-            }
-
-            @Override
-            public void onBusinessError(ErrorBean errorBean) {
-
-            }
-        });
-
+                    @Override
+                    public void onComplete() {
+                        LogUtils.e("onComplete");
+                    }
+                });
     }
 }

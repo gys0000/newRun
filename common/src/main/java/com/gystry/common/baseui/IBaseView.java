@@ -1,10 +1,11 @@
 package com.gystry.common.baseui;
 
 import com.gystry.common.net.ErrorBean;
+import com.gystry.common.widgets.MultipleStatusView;
 
 public interface IBaseView {
 
-    void showLoading();
+    void showLoading(MultipleStatusView multipleStatusView,String msg);
 
     void hideLoading();
 
