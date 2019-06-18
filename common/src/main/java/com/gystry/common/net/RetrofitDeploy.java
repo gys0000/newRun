@@ -87,12 +87,12 @@ public class RetrofitDeploy {
                 .subscribeWith(new DisposableObserver<BaseCommonBean<T>>() {
                     @Override
                     public void onNext(BaseCommonBean<T> tBaseCommonBean) {
-                        if (tBaseCommonBean.getStatus() == 200) {
+                        if (tBaseCommonBean.getCode() == 200) {
                             obserrverListener.onSuccess(tBaseCommonBean.getData());
                         } else {
                             ErrorBean errorBean = new ErrorBean();
-                            errorBean.setCode(tBaseCommonBean.getStatus() + "");
-                            errorBean.setMsg(tBaseCommonBean.getMessage() + "");
+                            errorBean.setCode(tBaseCommonBean.getCode() + "");
+                            errorBean.setMsg(tBaseCommonBean.getError() + "");
                         }
 
                     }

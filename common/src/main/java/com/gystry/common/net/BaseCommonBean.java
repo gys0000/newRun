@@ -1,24 +1,38 @@
 package com.gystry.common.net;
 
 public class BaseCommonBean<T> {
-    private String message;//提示信息
-    private int status;//状态码
-    private  T data;//实际有用的数据
+    private boolean success;//提示信息
+    private String error;
+    private int code;//状态码
+    private T data;//实际有用的数据
 
-    public String getMessage() {
-        return message;
+    public String getError() {
+        if (error != null) {
+            return error;
+        } else {
+            return "";
+        }
+
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setError(String error) {
+        this.error = error;
     }
 
-    public int getStatus() {
-        return status;
+    public boolean isSuccess() {
+        return success;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public T getData() {
