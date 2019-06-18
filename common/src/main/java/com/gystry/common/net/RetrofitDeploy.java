@@ -55,7 +55,7 @@ public class RetrofitDeploy {
     /**
      * 配置retrofit okhttp
      */
-    private Retrofit doRequestByRetrofit() {
+    private Retrofit doRequestByRetrofit(String baseUrl) {
         if (retrofit == null) {
             synchronized (this) {
                 if (retrofit == null) {
@@ -70,7 +70,7 @@ public class RetrofitDeploy {
 //                           .sslSocketFactory(getSslSocketFactory(context, "srca.cer"))
                             .build();
                     retrofit = new Retrofit.Builder()
-                            .baseUrl(Api.BASE_URL)
+                            .baseUrl(baseUrl)
                             .addConverterFactory(GsonConverterFactory.create())//设置json转换器
                             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//rxjava适配器
                             .client(httpClient)
@@ -152,7 +152,7 @@ public class RetrofitDeploy {
         return null;
     }
 
-    public Api getRequestService() {
-        return doRequestByRetrofit().create(Api.class);
+    public Retrofit getRequestService(String basrUrl) {
+        return doRequestByRetrofit(basrUrl);
     }
 }

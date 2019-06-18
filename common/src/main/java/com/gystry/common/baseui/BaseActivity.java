@@ -52,6 +52,15 @@ public abstract class BaseActivity<P extends BasePresenter, M extends BaseModel>
     }
 
     @Override
+    public void showLoading(MultipleStatusView multipleStatusView, String msg) {
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
     public void showBusinessError(ErrorBean errorBean) {
         mMultipleStatusView.showError();
     }

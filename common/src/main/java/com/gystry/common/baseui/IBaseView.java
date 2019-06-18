@@ -9,10 +9,6 @@ public interface IBaseView {
 
     void hideLoading();
 
-    void showDialogLoading(String msg);
-
-    void dismissDialogLoading();
-
     /**
      * 网络异常及数据错误等异常
      * @param errorBean

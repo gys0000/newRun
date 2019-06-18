@@ -9,7 +9,7 @@ import com.gystry.common.net.ErrorBean;
 public abstract class RxObserverListener<T> implements BaseObserrverListener<T> {
     private IBaseView mView;
 
-    private RxObserverListener(IBaseView view) {
+    public RxObserverListener(IBaseView view) {
         this.mView = view;
     }
 
@@ -22,7 +22,6 @@ public abstract class RxObserverListener<T> implements BaseObserrverListener<T> 
         errorBean.setCode(String.valueOf(responseThrowable.code));
         if (mView != null) {
             mView.showException(errorBean);
-            mView.dismissDialogLoading();
             ToastUtils.showShort(responseThrowable.message);
         }
     }
@@ -37,7 +36,6 @@ public abstract class RxObserverListener<T> implements BaseObserrverListener<T> 
     public void onBusinessError(ErrorBean errorBean) {
         if (mView != null) {
             mView.showBusinessError(errorBean);
-            mView.dismissDialogLoading();
             LogUtils.e("onBusinessError msg=" + errorBean.getMsg());
         }
     }

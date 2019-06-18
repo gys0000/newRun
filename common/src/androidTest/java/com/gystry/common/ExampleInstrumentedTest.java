@@ -30,22 +30,6 @@ public class ExampleInstrumentedTest {
     @Test
     public void getMessageTest() {
         TokenManager.getInstance().setToken("Bearer 20b4f5b55c3fc30f98120b6bdbda546d");
-        RetrofitDeploy.getRetrofitManager().getRequestService().getLiveList().compose(RxSchedulers.<BaseCommonBean>io_main())
-                .subscribeWith(new DisposableObserver<Object>() {
-                    @Override
-                    public void onNext(Object o) {
-                        LogUtils.e("onNext");
-                    }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        LogUtils.e("onError");
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        LogUtils.e("onComplete");
-                    }
-                });
     }
 }
